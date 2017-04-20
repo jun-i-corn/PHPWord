@@ -26,6 +26,12 @@ $textrun = $section->addTextRun();
 $textrun->addText('Drop down list: ');
 $textrun->addSDT('dropDownList')->setListItems(array('1' => 'Choice 1', '2' => 'Choice 2'))->setValue('Choice 1');
 
+// SDTBlocks are called "Rich Text Content Controls" in Word and can contain basically everything.
+$sdtBlock = $section->addSDTBlock();
+$sdtBlock->setTag('SDTBlock Tag');
+$sdtBlock->addListItem('First List Item', 0);
+$sdtBlock->addListItem('Second List Item', 0);
+
 // Save file
 echo write($phpWord, basename(__FILE__, '.php'), $writers);
 if (!CLI) {

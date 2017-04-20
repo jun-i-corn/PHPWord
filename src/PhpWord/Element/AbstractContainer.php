@@ -45,6 +45,7 @@ namespace PhpOffice\PhpWord\Element;
  * @method Chart addChart(string $type, array $categories, array $values, array $style = null)
  * @method FormField addFormField(string $type, mixed $fStyle = null, mixed $pStyle = null)
  * @method SDT addSDT(string $type)
+ * @method SDTBlock addSDTBlock()
  *
  * @since 0.10.0
  */
@@ -83,7 +84,7 @@ abstract class AbstractContainer extends AbstractElement
             'ListItem', 'ListItemRun', 'Table', 'Image', 'Object',
             'Footnote', 'Endnote', 'CheckBox', 'TextBox', 'Field',
             'Line', 'Shape', 'Title', 'TOC', 'PageBreak',
-            'Chart', 'FormField', 'SDT'
+            'Chart', 'FormField', 'SDT', 'SDTBlock'
         );
         $functions = array();
         foreach ($elements as $element) {
@@ -188,7 +189,7 @@ abstract class AbstractContainer extends AbstractElement
     private function checkValidity($method)
     {
         $generalContainers = array(
-            'Section', 'Header', 'Footer', 'Footnote', 'Endnote', 'Cell', 'TextRun', 'TextBox', 'ListItemRun',
+            'Section', 'Header', 'Footer', 'Footnote', 'Endnote', 'Cell', 'TextRun', 'TextBox', 'ListItemRun', 'SDTBlock'
         );
 
         $validContainers = array(
@@ -203,10 +204,10 @@ abstract class AbstractContainer extends AbstractElement
             'Shape'         => $generalContainers,
             'FormField'     => $generalContainers,
             'SDT'           => $generalContainers,
-            'TextRun'       => array('Section', 'Header', 'Footer', 'Cell', 'TextBox'),
-            'ListItem'      => array('Section', 'Header', 'Footer', 'Cell', 'TextBox'),
-            'ListItemRun'   => array('Section', 'Header', 'Footer', 'Cell', 'TextBox'),
-            'Table'         => array('Section', 'Header', 'Footer', 'Cell', 'TextBox'),
+            'TextRun'       => array('Section', 'Header', 'Footer', 'Cell', 'TextBox', 'SDTBlock'),
+            'ListItem'      => array('Section', 'Header', 'Footer', 'Cell', 'TextBox', 'SDTBlock'),
+            'ListItemRun'   => array('Section', 'Header', 'Footer', 'Cell', 'TextBox', 'SDTBlock'),
+            'Table'         => array('Section', 'Header', 'Footer', 'Cell', 'TextBox', 'SDTBlock'),
             'CheckBox'      => array('Section', 'Header', 'Footer', 'Cell'),
             'TextBox'       => array('Section', 'Header', 'Footer', 'Cell'),
             'Footnote'      => array('Section', 'TextRun', 'Cell'),
