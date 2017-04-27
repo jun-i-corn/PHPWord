@@ -189,7 +189,7 @@ abstract class AbstractContainer extends AbstractElement
     private function checkValidity($method)
     {
         $generalContainers = array(
-            'Section', 'Header', 'Footer', 'Footnote', 'Endnote', 'Cell', 'TextRun', 'TextBox', 'ListItemRun', 'SDTBlock'
+            'Section', 'Header', 'Footer', 'Footnote', 'Endnote', 'Cell', 'TextRun', 'TextBox', 'ListItemRun'
         );
 
         $validContainers = array(
@@ -208,6 +208,7 @@ abstract class AbstractContainer extends AbstractElement
             'ListItem'      => array('Section', 'Header', 'Footer', 'Cell', 'TextBox', 'SDTBlock'),
             'ListItemRun'   => array('Section', 'Header', 'Footer', 'Cell', 'TextBox', 'SDTBlock'),
             'Table'         => array('Section', 'Header', 'Footer', 'Cell', 'TextBox', 'SDTBlock'),
+            'SDTBlock'      => array('Section', 'Header', 'Footer', 'Cell'),
             'CheckBox'      => array('Section', 'Header', 'Footer', 'Cell'),
             'TextBox'       => array('Section', 'Header', 'Footer', 'Cell'),
             'Footnote'      => array('Section', 'TextRun', 'Cell'),

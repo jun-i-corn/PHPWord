@@ -58,7 +58,7 @@ class SDT extends Text
         // Content
         $xmlWriter->startElement('w:sdtContent');
         $xmlWriter->startElement('w:r');
-        $xmlWriter->writeElement('w:t', 'Pick value');
+        $xmlWriter->writeElement('w:t', !empty($element->getValue()) ? $element->getValue() : 'Pick value');
         $xmlWriter->endElement(); // w:r
         $xmlWriter->endElement(); // w:sdtContent
 
@@ -118,5 +118,11 @@ class SDT extends Text
         $xmlWriter->writeElementBlock('w:storeMappedDataAs', 'w:val', 'dateTime');
         $xmlWriter->writeElementBlock('w:calendar', 'w:val', 'gregorian');
         $xmlWriter->endElement(); // w:date
+    }
+
+
+    private function writeTextInput(XMLWriter $xmlWriter, SDTElement $element)
+    {
+        $xmlWriter->writeElement('w:text');
     }
 }

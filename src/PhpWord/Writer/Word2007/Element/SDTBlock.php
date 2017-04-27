@@ -59,6 +59,12 @@ class SDTBlock extends AbstractElement
             $xmlWriter->writeElement('w:temporary');
         }
 
+        if ($element->isIsMultiLineText()){
+            $xmlWriter->startElement('w:text');
+            $xmlWriter->writeAttribute('w:multiLine', 1);
+            $xmlWriter->endElement();
+        }
+
         // write w:lock (Locking Setting)
         if (!$element->canBeEdited() && !$element->canBeDeleted()) {
             $lock = "sdtContentLocked";
