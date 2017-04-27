@@ -48,6 +48,8 @@ class SDTBlock extends AbstractContainer
     }
 
     /**
+     * a "non-rich-text" multi-line text input may not contain more than one textrun
+     *
      * @param bool $isMultiLineText
      */
     public function setIsMultiLineText($isMultiLineText)
@@ -145,6 +147,12 @@ class SDTBlock extends AbstractContainer
         $this->canBeDeleted = $canBeDeleted;
     }
 
+    /**
+     * a "non-rich-text" multi-line text input may not contain more than one textrun
+     *
+     * @param string $elementName
+     * @return mixed
+     */
     protected function addElement($elementName)
     {
         if ($this->isIsMultiLineText()) {
