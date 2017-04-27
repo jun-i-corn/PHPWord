@@ -120,7 +120,13 @@ class SDT extends Text
         $xmlWriter->endElement(); // w:date
     }
 
-
+    /**
+     * Write textInput.
+     *
+     * @param \PhpOffice\Common\XMLWriter $xmlWriter
+     * @param \PhpOffice\PhpWord\Element\SDT $element
+     * @return void
+     */
     private function writeTextInput(XMLWriter $xmlWriter, SDTElement $element)
     {
         $xmlWriter->writeElement('w:text');
