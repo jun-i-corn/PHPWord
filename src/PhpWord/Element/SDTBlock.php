@@ -33,6 +33,33 @@ class SDTBlock extends AbstractContainer
     private $canBeDeleted = false;
 
     /**
+     * if set, this will be a "non-rich-text" multi-line text input
+     * @var bool
+     */
+    private $isMultiLineText = false;
+
+    /**
+     * @return bool
+     */
+    public function isIsMultiLineText()
+    {
+        return $this->isMultiLineText;
+
+    }
+
+    /**
+     * @param bool $isMultiLineText
+     */
+    public function setIsMultiLineText($isMultiLineText)
+    {
+        if (!$isMultiLineText || count($this->getElements()) == 0 || (count($this->getElements()) == 1 && $this->getElements()[0] instanceof TextRun)) {
+            $this->isMultiLineText = $isMultiLineText;
+        } else {
+            throw new \BadMethodCallException('multi-line text inputs must contain exactly one TextRun and nothing else');
+        }
+    }
+
+    /**
      * @return string
      */
     public function getTag()
@@ -117,4 +144,16 @@ class SDTBlock extends AbstractContainer
         }
         $this->canBeDeleted = $canBeDeleted;
     }
+
+    protected function addElement($elementName)
+    {
+        if ($this->isIsMultiLineText()) {
+            if ($elementName != 'TextRun' || count($this->getElements()) > 0) {
+                throw new \BadMethodCallException('multi-line text inputs must contain exactly one TextRun and nothing else');
+            }
+        }
+
+        return call_user_func_array('parent::addElement', func_get_args());
+    }
+
 }

@@ -123,4 +123,10 @@ class SDT extends Text
         $xmlWriter->writeElementBlock('w:calendar', 'w:val', 'gregorian');
         $xmlWriter->endElement(); // w:date
     }
+
+
+    private function writeTextInput(XMLWriter $xmlWriter, SDTElement $element)
+    {
+        $xmlWriter->writeElement('w:text');
+    }
 }
