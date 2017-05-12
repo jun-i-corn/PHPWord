@@ -39,13 +39,23 @@ $sdtBlock->setTag('SDTBlock Tag');
 $sdtBlock->addListItem('First List Item', 0);
 $sdtBlock->addListItem('Second List Item', 0);
 
-// also, SDTBlocks can be used for multi-line non-rich-text content controls:
-$sdtBlock = $section->addSDTBlock();
+
+// SDTTextAreas can be used for multi-line non-rich-text content controls within TextRuns:
+$sdtBlock = $section->addSDTTextArea();
 $sdtBlock->setIsMultiLineText(true);
-$textrun = $sdtBlock->addTextRun();
-$textrun->addText('first line');
-$textrun->addTextBreak();
-$textrun->addText('second line');
+$sdtBlock->addText('first line');
+$sdtBlock->addTextBreak();
+$sdtBlock->addText('second line');
+
+// also, SDTTextAreas can be used for multi-line non-rich-text content controls outside of TextRuns:
+$textrun = $section->addTextRun();
+$textrun->addText('before');
+$sdtBlock = $textrun->addSDTTextArea();
+$sdtBlock->setIsMultiLineText(true);
+$sdtBlock->addText('first line');
+$sdtBlock->addTextBreak();
+$sdtBlock->addText('second line');
+$textrun->addText('after');
 
 
 // Save file
