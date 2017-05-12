@@ -17,6 +17,8 @@
 
 namespace PhpOffice\PhpWord\Writer\Word2007\Element;
 
+use PhpOffice\PhpWord\Element\SDTTextArea;
+
 /**
  * SDTBlock element writer
  *
@@ -39,7 +41,32 @@ class SDTBlock extends AbstractElement
         $xmlWriter->startElement('w:sdt');
 
         $xmlWriter->startElement('w:sdtPr');
+        $this->writeHeader($element, $xmlWriter);
+        $xmlWriter->endElement(); // w:sdtPr
 
+        $xmlWriter->startElement('w:sdtContent');
+        $this->writeContent($xmlWriter, $element);
+        $xmlWriter->endElement(); // w:sdtContent
+
+        $xmlWriter->endElement(); // w:sdt
+    }
+
+    /**
+     * @param $xmlWriter
+     * @param $element
+     */
+    protected function writeContent($xmlWriter, $element)
+    {
+        $containerWriter = new Container($xmlWriter, $element);
+        $containerWriter->write();
+    }
+
+    /**
+     * @param $element
+     * @param $xmlWriter
+     */
+    protected function writeHeader($element, $xmlWriter)
+    {
         // write w:alias (Friendly Name)
         if ($element->getAlias()) {
             $xmlWriter->startElement('w:alias');
@@ -59,12 +86,6 @@ class SDTBlock extends AbstractElement
             $xmlWriter->writeElement('w:temporary');
         }
 
-        if ($element->isIsMultiLineText()){
-            $xmlWriter->startElement('w:text');
-            $xmlWriter->writeAttribute('w:multiLine', 1);
-            $xmlWriter->endElement();
-        }
-
         // write w:lock (Locking Setting)
         if (!$element->canBeEdited() && !$element->canBeDeleted()) {
             $lock = "sdtContentLocked";
@@ -80,14 +101,5 @@ class SDTBlock extends AbstractElement
             $xmlWriter->writeAttribute('w:val', $lock);
             $xmlWriter->endElement(); // w:lock
         }
-
-        $xmlWriter->endElement(); // w:sdtPr
-
-        $xmlWriter->startElement('w:sdtContent');
-        $containerWriter = new Container($xmlWriter, $element);
-        $containerWriter->write();
-        $xmlWriter->endElement(); // w:sdtContent
-
-        $xmlWriter->endElement(); // w:sdt
     }
 }

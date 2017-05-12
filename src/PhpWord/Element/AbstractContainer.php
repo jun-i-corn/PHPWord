@@ -46,6 +46,7 @@ namespace PhpOffice\PhpWord\Element;
  * @method FormField addFormField(string $type, mixed $fStyle = null, mixed $pStyle = null)
  * @method SDT addSDT(string $type)
  * @method SDTBlock addSDTBlock()
+ * @method SDTTextArea addSDTTextArea()
  *
  * @since 0.10.0
  */
@@ -84,7 +85,7 @@ abstract class AbstractContainer extends AbstractElement
             'ListItem', 'ListItemRun', 'Table', 'Image', 'Object',
             'Footnote', 'Endnote', 'CheckBox', 'TextBox', 'Field',
             'Line', 'Shape', 'Title', 'TOC', 'PageBreak',
-            'Chart', 'FormField', 'SDT', 'SDTBlock'
+            'Chart', 'FormField', 'SDT', 'SDTBlock', 'SDTTextArea'
         );
         $functions = array();
         foreach ($elements as $element) {
@@ -189,7 +190,7 @@ abstract class AbstractContainer extends AbstractElement
     private function checkValidity($method)
     {
         $generalContainers = array(
-            'Section', 'Header', 'Footer', 'Footnote', 'Endnote', 'Cell', 'TextRun', 'TextBox', 'ListItemRun'
+            'Section', 'Header', 'Footer', 'Footnote', 'Endnote', 'Cell', 'TextRun', 'TextBox', 'ListItemRun', 'SDTTextArea'
         );
 
         $validContainers = array(
@@ -204,6 +205,7 @@ abstract class AbstractContainer extends AbstractElement
             'Shape'         => $generalContainers,
             'FormField'     => $generalContainers,
             'SDT'           => $generalContainers,
+            'SDTTextArea'   => array_diff($generalContainers, ['SDTTextArea']),
             'TextRun'       => array('Section', 'Header', 'Footer', 'Cell', 'TextBox', 'SDTBlock'),
             'ListItem'      => array('Section', 'Header', 'Footer', 'Cell', 'TextBox', 'SDTBlock'),
             'ListItemRun'   => array('Section', 'Header', 'Footer', 'Cell', 'TextBox', 'SDTBlock'),
