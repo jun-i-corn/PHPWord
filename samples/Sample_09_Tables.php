@@ -138,6 +138,21 @@ $cell->addText('This cell contains nested table.');
 $innerCell = $cell->addTable(array('alignment' => \PhpOffice\PhpWord\SimpleType\JcTable::CENTER))->addRow()->addCell();
 $innerCell->addText('Inside nested table');
 
+// 6. Basic table width indent
+
+
+$section->addTextBreak(2);
+$section->addText('Left aligned table, 10cm width, 2cm indent', $header);
+
+// note that width and indent have to be in the same unit
+$table = $section->addTable(array('width' => 5670, 'indent' => 1134, 'unit' => 'dxa', 'alignment' => \PhpOffice\PhpWord\SimpleType\JcTable::START));
+for ($r = 1; $r <= 8; $r++) {
+    $table->addRow();
+    for ($c = 1; $c <= 5; $c++) {
+        $table->addCell(1750)->addText("Row {$r}, Cell {$c}");
+    }
+}
+
 // Save file
 echo write($phpWord, basename(__FILE__, '.php'), $writers);
 if (!CLI) {

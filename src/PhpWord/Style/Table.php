@@ -117,6 +117,11 @@ class Table extends Border
     private $width = 0;
 
     /**
+     * @var int|float indent value
+     */
+    private $indent = 0;
+
+    /**
      * @var string Width unit
      */
     private $unit = self::WIDTH_AUTO;
@@ -562,6 +567,29 @@ class Table extends Border
     public function setWidth($value = null)
     {
         $this->width = $this->setNumericVal($value, $this->width);
+
+        return $this;
+    }
+
+    /**
+     * Get indent
+     *
+     * @return int|float
+     */
+    public function getIndent()
+    {
+        return $this->indent;
+    }
+
+    /**
+     * Set indent
+     *
+     * @param int|float $value
+     * @return self
+     */
+    public function setIndent($value = null)
+    {
+        $this->indent = $this->setNumericVal($value, $this->indent);
 
         return $this;
     }

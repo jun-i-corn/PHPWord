@@ -80,6 +80,7 @@ class Table extends AbstractStyle
         }
 
         $this->writeWidth($xmlWriter, $style->getWidth(), $style->getUnit());
+        $this->writeIndent($xmlWriter, $style->getIndent(), $style->getUnit());
         $this->writeMargin($xmlWriter, $style);
         $this->writeBorder($xmlWriter, $style);
 
@@ -109,6 +110,23 @@ class Table extends AbstractStyle
         $xmlWriter->writeAttribute('w:type', $unit);
         $xmlWriter->endElement(); // w:tblW
     }
+
+    /**
+     * Write indent.
+     *
+     * @param \PhpOffice\Common\XMLWriter $xmlWriter
+     * @param int $indent
+     * @param string $unit
+     * @return void
+     */
+    private function writeIndent(XMLWriter $xmlWriter, $indent, $unit)
+    {
+        $xmlWriter->startElement('w:tblInd');
+        $xmlWriter->writeAttribute('w:w', $indent);
+        $xmlWriter->writeAttribute('w:type', $unit);
+        $xmlWriter->endElement(); // w:tblInd
+    }
+
 
     /**
      * Write margin.
