@@ -29,7 +29,7 @@ $section->addText('Fancy table', $header);
 $fancyTableStyleName = 'Fancy Table';
 $fancyTableStyle = array('borderSize' => 6, 'borderColor' => '006699', 'cellMargin' => 80, 'alignment' => \PhpOffice\PhpWord\SimpleType\JcTable::CENTER);
 $fancyTableFirstRowStyle = array('borderBottomSize' => 18, 'borderBottomColor' => '0000FF', 'bgColor' => '66BBFF');
-$fancyTableCellStyle = array('valign' => 'center');
+$fancyTableCellStyle = array('valign' => 'center', 'marginLeft' => 280, 'marginTop' => 280);
 $fancyTableCellBtlrStyle = array('valign' => 'center', 'textDirection' => \PhpOffice\PhpWord\Style\Cell::TEXT_DIR_BTLR);
 $fancyTableFontStyle = array('bold' => true);
 $phpWord->addTableStyle($fancyTableStyleName, $fancyTableStyle, $fancyTableFirstRowStyle);
