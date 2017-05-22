@@ -94,6 +94,34 @@ class Cell extends Border
     private $shading;
 
     /**
+     * Margin Top
+     *
+     * @var int
+     */
+    private $marginTop;
+
+    /**
+     * Margin Bottom
+     *
+     * @var int
+     */
+    private $marginBottom;
+
+    /**
+     * Margin Left
+     *
+     * @var int
+     */
+    private $marginLeft;
+
+    /**
+     * Margin Right
+     *
+     * @var int
+     */
+    private $marginRight;
+
+    /**
      * Get vertical align.
      *
      * @return string
@@ -246,5 +274,111 @@ class Cell extends Border
     public function getDefaultBorderColor()
     {
         return self::DEFAULT_BORDER_COLOR;
+    }
+
+    /**
+     * check if there is a margin set
+     *
+     * @return bool
+     */
+    public function hasMargin()
+    {
+        return $this->getMarginTop() !== null || $this->getMarginLeft() !== null  ||
+            $this->getMarginRight() !== null  || $this->getMarginBottom() !== null ;
+    }
+
+    /**
+     * Get margin
+     *
+     * @return integer[]
+     */
+    public function getMargin()
+    {
+        return array(
+            $this->getMarginTop(),
+            $this->getMarginLeft(),
+            $this->getMarginRight(),
+            $this->getMarginBottom(),
+        );
+    }
+
+    /**
+     * Get top margin
+     *
+     * @return int
+     */
+    public function getMarginTop()
+    {
+        return $this->marginTop;
+    }
+
+    /**
+     * Set top margin
+     *
+     * @param int $marginTop
+     */
+    public function setMarginTop($marginTop)
+    {
+        $this->marginTop = $marginTop;
+    }
+
+    /**
+     * Get bottom margin
+     *
+     * @return int
+     */
+    public function getMarginBottom()
+    {
+        return $this->marginBottom;
+    }
+
+    /**
+     * Set bottom margin
+     *
+     * @param int $marginBottom
+     */
+    public function setMarginBottom($marginBottom)
+    {
+        $this->marginBottom = $marginBottom;
+    }
+
+    /**
+     * Get left margin
+     *
+     * @return int
+     */
+    public function getMarginLeft()
+    {
+        return $this->marginLeft;
+    }
+
+    /**
+     * Set left margin
+     *
+     * @param int $marginLeft
+     */
+    public function setMarginLeft($marginLeft)
+    {
+        $this->marginLeft = $marginLeft;
+    }
+
+    /**
+     * Get right margin
+     *
+     * @return int
+     */
+    public function getMarginRight()
+    {
+        return $this->marginRight;
+    }
+
+    /**
+     * Set right margin
+     *
+     * @param int $marginRight
+     */
+    public function setMarginRight($marginRight)
+    {
+        $this->marginRight = $marginRight;
     }
 }

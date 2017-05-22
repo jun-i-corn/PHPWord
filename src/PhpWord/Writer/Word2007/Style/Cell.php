@@ -86,6 +86,17 @@ class Cell extends AbstractStyle
         $xmlWriter->writeElementIf(!is_null($gridSpan), 'w:gridSpan', 'w:val', $gridSpan);
         $xmlWriter->writeElementIf(!is_null($vMerge), 'w:vMerge', 'w:val', $vMerge);
 
+        // Margins
+        if ($style->hasMargin()) {
+            $xmlWriter->startElement('w:tcMar');
+
+            $styleWriter = new MarginBorder($xmlWriter);
+            $styleWriter->setSizes($style->getMargin());
+            $styleWriter->write();
+
+            $xmlWriter->endElement(); // w:tcMar
+        }
+
         $xmlWriter->endElement(); // w:tcPr
     }
 
