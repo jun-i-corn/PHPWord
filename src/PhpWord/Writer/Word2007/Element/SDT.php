@@ -62,6 +62,7 @@ class SDT extends Text
         // Content
         $xmlWriter->startElement('w:sdtContent');
         $xmlWriter->startElement('w:r');
+        $this->writeFontStyle();
         $xmlWriter->writeElement('w:t', $value);
         $xmlWriter->endElement(); // w:r
         $xmlWriter->endElement(); // w:sdtContent
